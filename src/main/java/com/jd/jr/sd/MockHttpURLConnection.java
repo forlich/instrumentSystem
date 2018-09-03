@@ -40,6 +40,9 @@ public class MockHttpURLConnection extends HttpURLConnection {
 	 */
 	public MockHttpURLConnection(URL url, String content) {
 		super(url);
+		if (content == null) {
+			content = "";
+		}
 		this.content = content;
 		if (content != null) {
 			this.addHeader("content-length", content.length() + "");
@@ -115,6 +118,7 @@ public class MockHttpURLConnection extends HttpURLConnection {
 	@Override
 	public InputStream getInputStream() {
 		return new ByteArrayInputStream(content.getBytes());
+
 	}
 
 	@Override
